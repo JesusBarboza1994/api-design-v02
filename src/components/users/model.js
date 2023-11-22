@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const user_schema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -19,6 +19,6 @@ const userSchema = new mongoose.Schema({
   tokenExpiresAt: { type: Date }, // Almacena la fecha de expiración del token aquí
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', user_schema);
 
 module.exports = User;
