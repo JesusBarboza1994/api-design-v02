@@ -18,6 +18,16 @@ const design_schema = new mongoose.Schema({
   customer:  { type: mongoose.Schema.Types.ObjectId, ref: 'Customer' },
   car:  { type: mongoose.Schema.Types.ObjectId, ref: 'Car' },
   correlative: { type: String, unique: true },
+  product_type: {
+    type: String,
+    enum: ['SPRING'],
+    default: 'SPRING'
+  },
+  design_type: {
+    type: String,
+    enum: ['SUSPENSION', 'COMPRESION', 'TRACCION', 'TORSION'],
+    required: true
+  },
   status: { 
     type: String,
     enum: ['ACEPTADO', 'ANULADO', 'COTIZADO', 'DISENO', 'NO_ACEPTADO', 'VALIDACION', 'VERIFICACION', 'VERIFICADO'],
@@ -32,7 +42,7 @@ const design_schema = new mongoose.Schema({
   },
   request_reason: { type: String },
   application: { type: String },
-  design_type: {
+  design_subtype: {
     type: String,
     enum: ['REFORZADO', 'ORIGINAL', 'OTROS', 'GLP', 'GNV(3)', 'GNV(4)', 'GNV(5)', 'BLINDADO', 'PROGRESIVO', 'SEGUN_MUESTRA'],
     default: 'REFORZADO'
@@ -43,7 +53,7 @@ const design_schema = new mongoose.Schema({
   price: { type: Number },
   quantity: { type: Number },
   requirement_order: { type: String },
-  production_order_number: { type: String, unique: true },
+  production_order_number: {type: String, default: null, trim: true, unique: true, sparse: true},
   drawing: { type: String },
   collaborators: [collaborator],
   correlatives_associated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Design' }],

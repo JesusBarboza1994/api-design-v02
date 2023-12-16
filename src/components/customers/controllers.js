@@ -53,6 +53,24 @@ async function delete_customer(req, res){
   }
 }
 
+export async function update_customer_in_design(data){
+  const updated_fields = {};
+
+  for (const [inputField, updateField] of Object.entries(data)) {
+    if (value !== undefined && value !== "") updated_fields[inputField] = updateField;
+  }
+
+  const customer = await Customer.findOneAndUpdate(
+    {  }, 
+    {
+      $set: updated_fields
+    },
+    { new: true, upsert: true, runValidators: true }
+  );
+
+  return customer;
+}
+
 module.exports = {
   create_customer,
   update_customer,
