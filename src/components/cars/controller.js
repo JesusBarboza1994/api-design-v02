@@ -14,7 +14,6 @@ export async function update_car_in_design(data){
     },
     { new: true, upsert: true, runValidators: true }
   );
-  console.log("JHEEEE")
 
   return customer;
 }
