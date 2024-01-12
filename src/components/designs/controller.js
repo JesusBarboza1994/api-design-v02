@@ -21,6 +21,7 @@ async function create_design(req, res){
       }
     ]
   })
+  console.log("HOLA")
   await new_design.save()
   res.status(201).json(new_design)
 }
